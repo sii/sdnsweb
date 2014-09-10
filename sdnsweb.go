@@ -1,3 +1,5 @@
+// Web frontend for the dynamic dns server sdns.
+
 package main
 
 import (

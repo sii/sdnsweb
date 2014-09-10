@@ -1,3 +1,5 @@
+// sdnsweb communication with sdns servers.
+
 package main
 
 import (

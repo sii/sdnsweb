@@ -1,3 +1,5 @@
+// sdnsweb database access.
+
 package main
 
 import (
