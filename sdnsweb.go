@@ -24,7 +24,6 @@ import (
 
 type globalConfig struct {
 	templatePath string
-	staticPath   string
 	templates    map[string]*template.Template
 	tmplLock     sync.RWMutex
 	httpApiKey   string
@@ -32,8 +31,6 @@ type globalConfig struct {
 }
 
 var config = &globalConfig{
-	templatePath: "./templates",
-	staticPath:   "./static",
 	templates:    make(map[string]*template.Template),
 }
 
@@ -59,7 +56,7 @@ func (gc *globalConfig) getTemplate(templates ...string) (*template.Template, er
 	ret, ok := gc.templates[first]
 	if ok == false {
 		for pos, val := range templates {
-			templates[pos] = gc.templatePath + "/" + val
+			templates[pos] = gc.templatePath + "/templates/" + val
 		}
 		ret, err = template.ParseFiles(templates...)
 		if err == nil {
@@ -383,7 +380,7 @@ func pStatic(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "no")
 		return
 	}
-	filepath := path.Join(config.staticPath, path.Clean(filename))
+	filepath := path.Join(config.templatePath, "static", path.Clean(filename))
 	data, err := ioutil.ReadFile(filepath)
 	if err != nil {
 		fmt.Fprintf(w, "no")
@@ -414,8 +411,6 @@ func startHTTPListener(port int) {
 	http.ListenAndServe(":"+strconv.Itoa(port), nil)
 }
 
-
-
 func main() {
 	var (
 		httpPort = flag.Int("httpport", 8080, "port to use for http queries")
@@ -426,6 +421,7 @@ func main() {
 		cdnsAPIServers = flag.String("dnsservers", "localhost:8081", "list of space seperated dns:port pairs")
 	)
 	flag.StringVar(&config.httpApiKey, "httpapikey", "", "key used for communication with dns backend")
+	flag.StringVar(&config.templatePath, "tmplpath", "./", "directory that contains the 'templates' and 'static' dirs")
 	flag.Parse()
 	if config.httpApiKey == "" {
 		fmt.Println("ERROR: Missing required flag httpapikey")
