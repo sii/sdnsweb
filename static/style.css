@@ -1,0 +1,49 @@
+html {
+	position: relative;
+	min-height: 100%;
+}
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 60px;
+	border-top: 1px solid #b0b0b0;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.main {
+	padding-top: 60px;
+}
+
+.center {
+	text-align: center;
+}
+.left {
+	text-align: left;
+}
+
+#input-domain {
+	min-width: 250px;
+}
+#input-address {
+	min-width: 250px;
+}
+
+.toptext h2 {
+	font-size: 35px;
+}
+.toptext p {
+	font-size: 21px;
+}
+
+.regtext {
+	font-size: 15px;
+}
+.highlight {
+	background-color: #A9A9AA;
+}

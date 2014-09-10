@@ -1,0 +1,28 @@
+{{define "head"}}<title>dns.routemeister.net</title>{{end}}
+
+{{define "body"}}
+<div class="toptext">
+	<h2 class="center">Updating records</h2>
+	<p>
+		Records are primarily updated using the link provided when registering a new record.
+	</p>
+	<pre>http://dns.routemeister.net/update?domain=a.example.com&dstip=192.168.1.1&accesskey=abc</pre>
+	<p>
+		The update url includes three variables, the domain, the access key, and optionally, the new destination IP (IPv4 or IPv6). If no destination IP is provided, the IP performing the HTTP request is used.<br/>
+		<br/>
+		The update url is intended for machine use and does not provide any pretty UI.<br/>
+	</p>
+	<br/>
+	<h2 class="center">Access keys</h2>
+	<p>
+	Access keys are unique per record/hostname. If an access key is lost it can not be recovered - no further updates will be possible for that record until it expires and can be re-registered.<br/>
+	</p>
+	<br/>
+	<h2 class="center">ddclient</h2>
+	<p>
+	dns.routemeister.net can be used with the 'ddclient' dynamic dns client. If ddclient is used, the
+	protocol to use is 'dyndns2', the access key should be set as the password. The username field can be
+	set to anything, it will not be used.
+	</p>
+</div>
+{{end}}

@@ -1,0 +1,17 @@
+{{define "head"}}<title>dns.routemeister.net</title>{{end}}
+
+{{define "body"}}
+<div class="toptext">
+	<h2 class="center">Using personal domains.</h2>
+	<p>
+		Using a personal domain with the service is as simple as setting dns01.routemeister.net and dns02.routemeister.net as nameservers for the domain and then adding dynamic records from the index page.<br/>
+	</p>
+		<br/>
+		<pre>	dynamic.example.com.		IN		NS		dns01.dns.routemeister.net.
+	dynamic.example.com.		IN		NS		dns02.dns.routemeister.net.</pre>
+	<br/>
+	<p>
+	No special registration is required for using personal domains. However this also means that once a domain has been pointed to the ddns name servers anyone is free to add records to that domain, so make sure to add the records you want immediately. There is no official list of what domains are pointed to the dns.routemeister.net name servers.
+	</p>
+</div>
+{{end}}

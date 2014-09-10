@@ -1,0 +1,45 @@
+{{define "head"}}<title>dns.routemeister.net</title>{{end}}
+
+{{define "body"}}
+<div class="toptext">
+	<h2 class="center">dns.routemeister.net</h2>
+	<p>
+		dns.routemeister.net is a dynamic dns service that focuses on being simple and lightweight. There is
+		no registration, no accounts are required, nothing.<br/>
+		<br/>
+		There is a certain cost associated with this. Access keys are required per dns record. It is not
+		possible to list which records you gave registered, you get to keep track of that yourself.
+		Records automatically expire when no dns requests have been made for 30 days, no manual removal is
+		required or even possible.<br/>
+	</p>
+	<br/>
+	<h2 class="center"><a href="/updating/">Updating records</a></h2>
+	<p>
+		Record updates are performed using the URL given when registering a new record.
+		The update url is intended to be used by automated scripts and similar. No additional web UI is
+		provided for record updates.
+		More details on updating records can be found <a href="/updating/">here</a>.
+	</p>
+	<br/>
+	<h2 class="center">Speed</h2>
+	<p>
+		All updates to the backend dns servers happen in realtime without any delays. All served dns
+		records have a TTL of 5 minutes.
+	</p>
+	<br/>
+	<h2 class="center">IPv4/IPv6</h2>
+	<p>
+		The service supports both A records (IPv4) and AAAA records (IPv6). Only one record type can be
+		active at a time. The type of address is autodetected when an update is performed.
+	</p>
+	<br/>
+	<h2 class="center"><a href="/personal/">Using personal domains</a></h2>
+	<p>
+		Use of personal domains is support, however they are not exclusive to any single user. Any domains
+		that have been pointed to the service can be used by all users. More details on using personal
+		domains can be found <a href="/personal/">here</a>.
+	</p>
+	<br/>
+	<br/>
+</div>
+{{end}}

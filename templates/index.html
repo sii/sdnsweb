@@ -1,0 +1,60 @@
+{{define "head"}}<title>dns.routemeister.net</title>{{end}}
+
+{{define "body"}}
+<div class="center toptext">
+	<h2>dns.routemeister.net</h2>
+	<p>
+		dns.routemeister.net provides a quick, simple and registration free dynamic dns service. You can add records under dns.routemeister.net or you can use a <a href="/personal/">personal (sub-)domain.</a>
+	</p>
+	<br/>
+	<br/>
+</div>
+{{if .ErrorMsg}}
+<div class="alert alert-warning">
+	{{.ErrorMsg}}
+</div>
+{{end}}
+<div class="reg-form">
+	<div class="center">
+	<form class="form-inline" action="/" method="POST">
+		<div class="form-group">
+			<label class="sr-only" for="input-domain">Domain name</label>
+			<input id="input-domain" class="form-control" name="domain" type="text" placeholder="Domain name" value="{{.Domain}}"/>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<select class="form-control" name="parent">
+					<option value="dns.routemeister.net"{{if eq .Parent "dns.routemeister.net"}} selected{{end}}>.dns.routemeister.net</option>
+					<option value=""{{if eq .Parent ""}} selected{{end}}>Personal domain</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
+				<label class="sr-only" for="input-address">IP-address</label>
+				<input id="input-address" class="form-control" name="address" type="text" placeholder="{{.SubmitIP}} (destination IPv4/IPv6)" value="{{.Address}}"/>
+			</div>
+		</div>
+		<button class="btn btn-primary" type="submit">Submit</button>
+	</form>
+	</div>
+</div>
+{{if .RegOK}}
+<br/>
+<br/>
+<div class="jumbotron" id="regtext">
+	<p>
+	{{.FullDomain}} <span class="glyphicon glyphicon-arrow-right"></span> {{.Address}} is now ready for use.<br/>
+	<br/>
+	The update key for this record is <span class="highlight">{{.UpdateKey}}</span>, please dont lose it, it is required for record updates.<br/>
+	<br/>
+	Registrations automatically expire when no dns requests have been made for 30 days. There is no need to manually remove them.<br/>
+	<br/>
+	The following link can be used to update your IP-address:<br/>
+	<a style="font-size: 18px" href="/update?domain={{.FullDomain}}&accesskey={{.UpdateKey}}&dstip={{.Address}}">http://dns.routemeister.net/update?domain={{.FullDomain}}&accesskey={{.UpdateKey}}&dstip={{.Address}}</a>
+	</p>
+	<p><a class="btn btn-primary btn-lg" role="button" href="/overview/">Learn more</a></p>
+</div>
+{{end}}
+{{end}}
